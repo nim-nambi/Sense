@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="woman.component.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-inverse ">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">SENSE</a>
+      </div>
+
+      <ul class="nav navbar-nav">
+        <li class="active"><a routerLink="/">Home</a></li>
+        <li><a routerLink="/forher">For Her</a></li>
+        <li><a routerLink="/forhim">For Him</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a  routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <button routerLink="/shoppingcart" class="btn  navbar-btn"
+          style="background-color:rgb(247, 70, 105); color:rgb(252, 252, 252);">Shopping
+          Cart</button><br>
+      </ul>
+
+    </div>
+  </nav>
+
+
+  <div style="text-align:center;">
+    <h1>FOR HER</h1>
+  </div>
+
+
+
+  <!-- The App Section -->
+  <div class="container" *ngFor="let item of items">
+    <div *ngIf="item.dept == 'Female'|| item.dept == 'female'">
+      <div class="row">
+        <div class="column-66">
+
+
+          <h1 class="xlarge-font"><b>{{item.name}}</b></h1>
+          <h1 class="large-font" style="color:crimson;"><b>{{item.dept}}</b></h1>
+          <p><span style="font-size:36px">Price: $ {{item.price}}</span></p>
+          <p><span style="font-size:20px">Description: {{item.info}}</span></p>
+
+
+
+          <!--{{item.info}} <input type="text" formControlName="info">-->
+          <!--<p><span style="font-size:36px">Description: </span> {{item.info}}</p>-->
+
+          <form [formGroup]="herCForm" (ngSubmit)="onitmSubmit()">
+            <input type="text" type="hidden" formControlName="name">
+            <input type="text" type="hidden" formControlName="dept">
+            <input type="text" type="hidden" formControlName="price">
+            <input type="text" type="hidden" formControlName="pic">
+            <button class="button button1" (click)="onEditItem(item)">Add to Cart</button>
+          </form>
+
+        </div>
+        <div class="column-33">
+          <img src="{{item.pic}}" width="335" height="471">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Clarity Section 
+  <div class="container" style="background-color:#f1f1f1">
+    <div class="row">
+      <div class="column-33">
+        <img
+          src="https://images.unicartapp.com/image/perfumeberry/image/cache/data/all_product_images/product-320/jimmy%20edp-700x700.jpeg"
+          alt="App" width="335" height="471" style="background-blend-mode: lighten;">
+      </div>
+      <div class="column-66">
+        <h1 class="xlarge-font"><b>Jimmy Choo</b></h1>
+        <p><span style="font-size:20px">Price: $100</span></p>
+
+        <!--<h1 class="large-font" style="color:red;"><b>Pixels, who?</b></h1>
+        <p><span style="font-size:24px">A revolution in resolution.</span> Sharp and clear photos with the world's best
+          photo engine, incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquipex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur.</p>-->
+
+  <!-- <button class="button" style="background-color:red">Add to Cart</button>
+      </div>
+    </div>
+  </div>-->
+
+  <!-- The App Section 
+  <div class="container">
+    <div class="row">
+      <div class="column-66">
+        <h1 class="xlarge-font"><b>Versace</b></h1>
+        <p><span style="font-size:20px">Price: $100</span></p>-->
+
+  <!--<h1 class="large-font" style="color:MediumSeaGreen;"><b>Why buy it?</b></h1>
+        <p><span style="font-size:36px">Take photos like a pro.</span> You should buy this app because lorem ipsum
+          consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+          irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>-->
+
+  <!--<button class="button">Add to Cart</button>
+      </div>
+      <div class="column-33">
+        <img
+          src="https://www.fragrancedirect.co.uk/dw/image/v2/BBNB_PRD/on/demandware.static/-/Sites-fragrance-master-catalog/default/dwef8f46f5/images/large/MAIN/0064276-2.jpg?sw=1350&sh=1000&sm=fit"
+          width="335" height="471">
+      </div>
+    </div>
+  </div>-->
+
+</body>
+
+</html>

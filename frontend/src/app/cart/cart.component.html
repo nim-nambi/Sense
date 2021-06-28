@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="cart.component.css">
+
+</head>
+
+<body>
+
+  <div class="about-section">
+    <h1 style="font-size: 1.6em;">Shopping Cart</h1>
+  </div>
+
+  <br>
+
+  <div class="rowmain">
+    <div class="columnmain" style="background-color:rgb(255, 255, 255);">
+      <div class="card" style="width:50%;">
+        <div class="container">
+          <p>Total number of items: {{this.count}}</p>
+          <p>Total Price: $ {{this.total}}</p>
+          <button class="form-btn">Checkout</button>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="columnmain" style="background-color:rgb(255, 255, 255);">
+      <div class="card" style="width:50%;">
+        <div class="container">
+          <form [formGroup]="itmForm" (ngSubmit)="onItmSubmit()">
+
+            
+            Name: <input type="text" formControlName="name">
+             
+            Department: <input type="text" formControlName="dept">
+            
+            Price: <input type="text" formControlName="price">
+            Picture: <input type="text" formControlName="pic">
+
+            <button type="submit" class="form-btn">{{editMode?'Update Item' : 'Add Item'}}</button>
+
+          </form>
+        </div>
+      </div>-->
+
+    <div class="columnmain2" style="background-color:rgb(255, 255, 255);">
+      <div class="row">
+        <div class="column" *ngFor="let item of items">
+          <div class="card">
+            <img src="{{item.pic}}" style="width:100%;height: 250px;">
+            <div class="containerT">
+              <h2>{{item.name}}</h2>
+              <h3>{{item.dept}}</h3>
+              <h3>${{item.price}}</h3>
+              <p><button class="button" (click)="onDeleteItem(item._id)">Delete</button></p>
+              <!--<p><button class="button" (click)="onEditItem(item)">Edit</button></p>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
