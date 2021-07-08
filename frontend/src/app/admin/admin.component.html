@@ -1,1 +1,45 @@
-<p>admin works!</p>
+<!DOCTYPE html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Login / Sign Up Form</title>
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="admin.component.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+</head>
+
+<body>
+     <nav class="navbar navbar-inverse ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">SENSE</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <!--<li class="active"><a routerLink="/">Home</a></li>
+                <li><a routerLink="/forher">For Her</a></li> -->
+                <li><a routerLink="/forhim"><B>ADMIN DASHBOARD</B></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <button routerLink="/" class="btn  navbar-btn"
+                  style="background-color:rgb(247, 70, 105); color:rgb(252, 252, 252);">Logout</button><br>
+              </ul>
+        </div>
+    </nav>
+
+    <!-- <div class="container">
+                <div class="box"> 
+                    <img src="../frontend/Darko_17.png"  alt="Example image" style="object-fit: cover"> 
+                </div>
+        </div>   -->
+
+    <div class="sidebar">
+        <a class="active" href="#home">Dashboard</a>
+        <a href="#Customers">Customers</a>
+        <a href="#Products">Products</a>
+        <a href="#Orders">Orders</a>
+    </div>
+
+</body>
