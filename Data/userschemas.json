@@ -1,0 +1,61 @@
+[{
+  "_id": {
+    "$oid": "60d0f3aac3f91c464071ccd8"
+  },
+  "isAdmin": true,
+  "city": "Dubai",
+  "country": "UAE",
+  "name": "admin",
+  "email": "admin@app",
+  "passwordHash": "$2a$10$wK/4gB0Ny/xdqZUz.hpjLedz8atySLDCB8aUjDE9vFU5jmgTMXpqe",
+  "phone": "04223",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60d0f3fac3f91c464071ccd9"
+  },
+  "isAdmin": false,
+  "city": "New York",
+  "country": "USA",
+  "name": "user2",
+  "email": "user2@app",
+  "passwordHash": "$2a$10$FbfTo0mwFW62LMktPSNSgu66CiC.Qa3tvZ6t5HQDdWsOCzXKj8BNu",
+  "phone": "04223",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60d23f9add1f9210f06838bb"
+  },
+  "isAdmin": false,
+  "city": "Pune",
+  "country": "India",
+  "name": "user4",
+  "email": "user4@app",
+  "passwordHash": "$2a$10$RQY/5/3JMZx/Fp.UatJBfefRv5YgVMiougHbSNQl5M9vczFdsmkSG",
+  "phone": "1234",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60d8422b7a88016d1c209476"
+  },
+  "isAdmin": false,
+  "city": "Istanbul",
+  "country": "Turkey",
+  "name": "user1",
+  "email": "user1@app",
+  "passwordHash": "$2a$10$ifFf0WvDMqUfDhY4TmgOk.cY2OcdO3eTRAZfKvK87k4qu5lgQejuS",
+  "phone": "1234",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60d87c997a88016d1c209477"
+  },
+  "isAdmin": false,
+  "city": "dubai",
+  "country": "a",
+  "name": "a",
+  "email": "a@email",
+  "passwordHash": "$2a$10$M5XHHtQxB2RKansqJBFjeeLJM6szOzvvh/D2rSSnIG883OG8cY/am",
+  "phone": "a",
+  "__v": 0
+}]

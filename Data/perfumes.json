@@ -1,0 +1,81 @@
+[{
+  "_id": {
+    "$oid": "60ca470237da205278460e8e"
+  },
+  "name": "Darko",
+  "dept": "Female",
+  "price": "100",
+  "pic": "https://images-na.ssl-images-amazon.com/images/I/51uPO%2BnKRFL._SL1000_.jpg",
+  "info": "Darko perfume for female",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60ca474d37da205278460e8f"
+  },
+  "name": "Gucci",
+  "dept": "Female",
+  "price": 200,
+  "pic": "https://www.sephora.ae/dw/image/v2/BCVW_PRD/on/demandware.static/-/Sites-masterCatalog_Sephora/default/dw593da29f/images/hi-res/SKU/SKU_828/465076_swatch.jpg?sw=585&sh=585&sm=fit",
+  "info": "Gucci perfume for male",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60ca4d7037da205278460e91"
+  },
+  "name": "Lancome",
+  "dept": "Male",
+  "price": 200,
+  "pic": "https://www.perfumemaster.com/images/fragrances/l/Lancome/2008/Lancome_HYPNOSE_EAU_FRAICHE_M_001.JPG",
+  "info": "lancome perfume for male",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60ca4df337da205278460e92"
+  },
+  "name": "Fendi",
+  "dept": "Female",
+  "price": "300",
+  "pic": "https://images-eu.ssl-images-amazon.com/images/I/519KbxWgVZL._AC_UL600_SR600,600_.jpg",
+  "info": "Fendi perfume for female",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60ca4f0837da205278460e93"
+  },
+  "name": "Versace",
+  "dept": "female",
+  "price": 200,
+  "pic": "https://my-test-11.slatic.net/p/3efa05c669ee58eecdd7780858a1ec33.jpg_720x720q80.jpg_.webp",
+  "info": "Versace Perfume for Females",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60cb4c92634d91550093c395"
+  },
+  "name": "Gucci",
+  "dept": "Male",
+  "price": 100,
+  "pic": "https://leopassion.com/wp-content/uploads/2017/09/Gucci-Made-to-Measure1.jpg",
+  "info": "Gucci perfume for men",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60cdef217182515108cabf04"
+  },
+  "name": "D&G",
+  "dept": "Male",
+  "price": 245.6,
+  "pic": "https://dtcuw0q57c29y.cloudfront.net/media/catalog/product/cache/54af96882d2267ee086f7a7f4f827643/k/b/kbydolcegabbana50ml_.jpg",
+  "info": "D&G perfume for men",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60cef5dcd6fbbe6a6cdf670f"
+  },
+  "name": "Dior",
+  "dept": "Male",
+  "price": 345.6,
+  "pic": "https://www.brandfield.com/media/catalog/product/cache/image/9df78eab33525d08d6e5fb8d27136e95/3/3/3348900838185_1.jpg",
+  "info": "Christian Dior perfume for men",
+  "__v": 0
+}]
