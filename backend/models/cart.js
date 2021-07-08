@@ -9,4 +9,10 @@ const Item = mongoose.model('Item', {
   pic: { type: String }
 });
 
+const ItemLocalStorage = mongoose.model('ItemLocalStorage', {
+  userId: {type: String},
+  cartList: { type: [] },
+});
+
 module.exports = Item;
+module.exports = ItemLocalStorage;

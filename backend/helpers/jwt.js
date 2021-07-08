@@ -14,12 +14,14 @@ function authJwt() {
     isRevoked: isRevoked //to specify the user is admin or not 
   }).unless({
     path: [
-      // { url: /\/perfumes(.*)/, methods: ['GET', 'OPTIONS'] },
-      // { url: /\/shoppingcart(.*)/, methods: ['GET', 'OPTIONS'] },
-      // '/users/login',
-      // '/users/register',
-      // //backticks are used to inject variable in string
-    {url:/(.*)/},
+      { url: /\/perfumes(.*)/, methods: ['GET', 'OPTIONS'] },
+      { url: /\/shoppingcart(.*)/, methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'] },
+      { url: /\/shoppingcart\/local(.*)/, methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'] },
+      '/users/login',
+      '/users/register',
+      //'/shoppingcart'
+      //backticks are used to inject variable in string
+
     ]
   })
 }

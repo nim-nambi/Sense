@@ -24,15 +24,14 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a  routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-
-        <button routerLink="/shoppingcart" class="btn  navbar-btn"
+        <li><a (click)='logout()' ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <button (click)='shoppingCart()' class="btn  navbar-btn"
           style="background-color:rgb(247, 70, 105); color:rgb(252, 252, 252);">Shopping
           Cart</button><br>
       </ul>
     </div>
   </nav>
-
-
+  
   <div class="bgimg-1">
     <div class="caption">
       <span class="border">SENSE</span>

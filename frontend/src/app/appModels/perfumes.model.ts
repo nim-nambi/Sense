@@ -1,8 +1,9 @@
 export interface Perfume {
-  _id: string;
-  name: string;
-  dept: string;
-  price: number;
-  pic: string;
-  info: string
+  _id?: string;
+  name?: string;
+  dept?: string;
+  price?: number;
+  pic?: string;
+  info?: string;
+  idc?: string;
 }

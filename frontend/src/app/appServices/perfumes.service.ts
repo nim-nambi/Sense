@@ -15,7 +15,9 @@ export class PerfumesService {
     return this.http.post(this.url, itm);
   }
 
-
+  getItem(id: any){
+    return this.http.get(`${this.url}/${id}`);
+  }
   getItemList() {
     return this.http.get(this.url);
   }

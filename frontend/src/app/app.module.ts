@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { CartComponent } from './cart/cart.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { WomanComponent } from './woman/woman.component';
 import { PerfumeDbComponent } from './perfume-db/perfume-db.component';
@@ -14,6 +14,9 @@ import { ManComponent } from './man/man.component';
 import { RegisterComponent } from './register/register.component';
 import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
+import { JwtInterceptor } from './appServices/jwt.interceptor';
+import { AuthGuardService } from './appServices/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { LoginComponent } from './login/login.component';
     ManComponent,
     RegisterComponent,
     UsersComponent,
-    LoginComponent
+    LoginComponent,
+    AdminComponent
+  
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,8 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule
 
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}],
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

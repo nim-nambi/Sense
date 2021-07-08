@@ -33,7 +33,7 @@ export class PerfumeDbComponent implements OnInit {
     this.itmService.getItemList().subscribe((res: any) => {
       console.log(res);
       this.items = res;
-      this.count= this.items.length;
+      this.count = this.items.length;
     })
   }
 

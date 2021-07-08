@@ -4,6 +4,7 @@ import { Perfume } from '../appModels/perfumes.model';
 import { PerfumesService } from '../appServices/perfumes.service';
 import { Cart } from '../appModels/cart.model';
 import { CartService } from '../appServices/cart.service';
+import { UsersService } from '../appServices/users.service';
 
 
 @Component({
@@ -21,7 +22,13 @@ export class ManComponent implements OnInit {
 
   editMode: boolean = false;
 
-  constructor(private fb: FormBuilder, private fbC: FormBuilder, private itmService: PerfumesService, private cartService: CartService) { }
+  constructor(
+    private fb: FormBuilder,
+    private fbC: FormBuilder,
+    private itmService: PerfumesService,
+    private cartService: CartService,
+    private userService : UsersService
+    ) { }
 
   ngOnInit(): void {
     this.getItems();
@@ -44,6 +51,10 @@ export class ManComponent implements OnInit {
       pic: ['', Validators.required]
 
     });
+  }
+
+  logout() {
+    this.userService.userLogout();
   }
 
   getItems() {

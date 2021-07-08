@@ -1,6 +1,8 @@
 import { HtmlParser } from '@angular/compiler';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminComponent } from './admin/admin.component';
+import { AuthGuardService } from './appServices/auth-guard.service';
 import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -16,10 +18,12 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+    
   },
   {
     path: 'shoppingcart',
-    component: CartComponent
+    component: CartComponent,
+    // canActivate: [AuthGuardService]
   },
   {
     path: 'forher',
@@ -31,11 +35,18 @@ const routes: Routes = [
   },
   {
     path: 'perfumes',
-    component: PerfumeDbComponent
+    component: PerfumeDbComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'users',
-    component: UsersComponent
+    component: UsersComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'login',

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../appModels/user.model';
 import { Observable } from 'rxjs';
+import { LocalStorageService } from './local-storage.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,11 @@ import { Observable } from 'rxjs';
 export class UsersService {
 
   url = 'http://localhost:3000/users'
-  constructor(private http: HttpClient) { }
+  constructor(
+  private http: HttpClient,
+  private tokenService: LocalStorageService,
+  private router : Router)
+   { }
 
   addItem(itm: User) {
     return this.http.post(`${this.url}/register`, itm);
@@ -45,4 +51,9 @@ export class UsersService {
     return this.http.post(`${this.url}/login`, itm);
   } 
 
+  userLogout(){
+    this.tokenService.removeToken();
+    this.router.navigate(['/login']);
+  }
+  
 }
