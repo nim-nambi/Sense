@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { JwtInterceptor } from './appServices/jwt.interceptor';
 import { AuthGuardService } from './appServices/auth-guard.service';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AuthGuardService } from './appServices/auth-guard.service';
     RegisterComponent,
     UsersComponent,
     LoginComponent,
-    AdminComponent
+    AdminComponent,
+    OrderComponent
   
   ],
   imports: [

@@ -20,20 +20,24 @@
         <li><a routerLink="/forher">For Her</a></li>
         <li><a routerLink="/forhim">For Him</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-
-        <button routerLink="/shoppingcart" class="btn  navbar-btn"
-          style="background-color:rgb(247, 70, 105); color:rgb(252, 252, 252);">Shopping Cart</button><br>
+      <ul class="nav navbar-nav navbar-right"  >
+        <li><a *ngIf="this.loginStatus"><span class="glyphicon glyphicon-user"></span> {{this.username}}</a></li>
+        <li><a *ngIf="this.loginStatus && this.isAdmin" routerLink="/admin"><span class="glyphicon glyphicon-th-large"></span> Dashboard</a></li>
+        <li><a  *ngIf="this.loginStatus == false;" routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a  *ngIf="this.loginStatus==false;" routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a *ngIf="this.loginStatus" (click)="logout()" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <a *ngIf="this.loginStatus"><button (click)="shoppingCart()" class="btn  navbar-btn"
+          style="background-color:rgb(247, 70, 105); color:rgb(252, 252, 252);">Shopping
+          Cart</button></a><br>
       </ul>
     </div>
   </nav>
-
+  
 
   <div class="bgimg-1">
     <div class="w3-content w3-section" style="min-width:100%">
-      <img class="mySlides" src="https://t3.ftcdn.net/jpg/02/92/08/76/360_F_292087658_DcjJQHybeo1WYSnnw8dYd0BQnUbvpcDt.jpg" style="width:100%">
+      <!-- <img class="mySlides" src="https://t3.ftcdn.net/jpg/02/92/08/76/360_F_292087658_DcjJQHybeo1WYSnnw8dYd0BQnUbvpcDt.jpg" style="width:100%"> -->
+      <img class="mySlides" src="https://dailydoseofglam.com/wp-content/uploads/2019/02/Perfume-Pic.jpg" style="width:100%"> 
     </div>
   </div>
 
@@ -45,7 +49,7 @@
 
   <div class="bgimg-2">
     <div class="caption">
-      <div><button class="button button1">FOR HIM</button></div>
+      <div> <a routerLink="/forhim"><button class="button button1">FOR HIM</button></a></div>
       <br><br><br><br><br>
       <div class="him_txt">Perfume is a uniquely genuine way to reveal the individuality of the person wearing it.<br>Fresh, powdery or woody, perfume for men strives to be both strong and delicate at the same time.</div>
     </div>
@@ -58,7 +62,7 @@
 
   <div class="bgimg-3">
     <div class="caption">
-      <button class="button button2">FOR HER</button>
+      <a routerLink="/forher"><button class="button button2">FOR HER</button></a>
       <br><br><br><br><br>
       <div class="her_txt">The moment it touches your skin, the radiant aura of ladies perfume captures the essence of your femininity.Bold or charming, your must-have perfume should be chosen with care.</div>
     </div>
@@ -94,8 +98,8 @@
             <h6>Quick Links</h6>
             <ul class="footer-links">
               <li style="padding: 2px;"><a href="">Home</a></li>
-              <li style="padding: 2px;"><a href="">For Her</a></li>
-              <li style="padding: 2px;"><a href="">For Him</a></li>
+              <li style="padding: 2px;"><a routerLink="/forher">For Her</a></li>
+              <li style="padding: 2px;"><a routerLink="/forhim">For Him</a></li>
             </ul>
           </div>
         </div>
@@ -121,3 +125,93 @@
 </body>
 
 </html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="home.component.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-inverse ">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">SENSE</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a routerLink="/">Home</a></li>
+        <li><a routerLink="/forher">For Her</a></li>
+        <li><a routerLink="/forhim">For Him</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a  routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a *ngIf="this.loginStatus" (click)='logout()' ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <button (click)='shoppingCart()' class="btn  navbar-btn"
+          style="background-color:rgb(247, 70, 105); color:rgb(252, 252, 252);">Shopping
+          Cart</button><br>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="bgimg-1">
+    <div class="caption">
+      <span class="border">SENSE</span>
+    </div>
+  </div>
+
+
+  <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
+    <h3 style="text-align:center;">PERFUMES</h3>
+    <p>Parallax scrolling is a web site trend where the background content is moved at a different speed than the
+      foreground content while scrolling. Nascetur per nec posuere turpis, lectus nec libero turpis nunc at, sed posuere
+      mollis ullamcorper libero ante lectus, blandit pellentesque a, magna turpis est sapien duis blandit dignissim.
+      Viverra interdum mi magna mi, morbi sociis. Condimentum dui ipsum consequat morbi, curabitur aliquam pede, nullam
+      vitae eu placerat eget et vehicula. Varius quisque non molestie dolor, nunc nisl dapibus vestibulum at, sodales
+      tincidunt mauris ullamcorper, dapibus pulvinar, in in neque risus odio. Accumsan fringilla vulputate at quibusdam
+      sociis eleifend, aenean maecenas vulputate, non id vehicula lorem mattis, ratione interdum sociis ornare. Suscipit
+      proin magna cras vel, non sit platea sit, maecenas ante augue etiam maecenas, porta porttitor placerat leo.</p>
+  </div>
+
+  <div class="bgimg-2">
+    <div class="caption">
+      <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">FOR HIM</span>
+    </div>
+  </div>
+
+  <div style="position:relative;">
+    <div style="color:rgb(2, 0, 0);background-color:#f8d8b9;text-align:center;padding:50px 80px;text-align: justify;">
+      <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
+    </div>
+  </div>
+
+  <div class="bgimg-3">
+    <div class="caption">
+      <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;">FOR HER</span>
+    </div>
+  </div>
+
+  <div style="position:relative;">
+    <div style="color:rgb(5, 5, 5);background-color:#fde98d;text-align:center;padding:50px 80px;text-align: justify;">
+      <p>Scroll up and down to really get the feeling of how Parallax Scrolling works.</p>
+    </div>
+  </div>
+
+  <div class="bgimg-1">
+    <div class="caption">
+      <span class="border">COOL!</span>
+    </div>
+  </div>
+
+</body>
+
+</html> -->

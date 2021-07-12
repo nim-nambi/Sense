@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { Cart, CartItemDetail, ItemLocalStorage } from '../appModels/cart.model';
 import { AuthGuardService } from '../appServices/auth-guard.service';
@@ -31,6 +32,9 @@ export class CartComponent implements OnInit {
 
   length: any;
 
+  loginStatus: boolean = false;
+  username: any;
+
 
 
   constructor(
@@ -39,10 +43,20 @@ export class CartComponent implements OnInit {
     private perfumeService: PerfumesService,
     private userService: UsersService,
     private cart: LocalStorageService,
-    private user: AuthGuardService,) {
+    private user: AuthGuardService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
+
+    //to reload the page only once
+    //https://stackoverflow.com/questions/57201902/how-to-reload-a-page-once-using-angular-or-javascript
+    if (!localStorage.getItem('foo')) { 
+      localStorage.setItem('foo', 'no reload'); 
+      location.reload(); 
+    } else {
+      localStorage.removeItem('foo'); 
+    }
 
 
     this.getUserId();
@@ -68,6 +82,43 @@ export class CartComponent implements OnInit {
 
 
     });
+    this.userStatus();
+    this.getUsername();
+
+    
+  
+    
+  }
+
+  getUsername(){
+    const tokenL = this.cart.getToken();
+    const userid = this.user.getUserId(tokenL);
+    console.log(userid);
+     this.userService.getUser(userid).subscribe(
+       (res) => {
+         this.username = res.name;
+       }
+     );
+  }
+
+  userStatus(){
+    const token = this.cart.getCart();
+    if (token){
+      this.loginStatus = true;
+    }
+    console.log(this.loginStatus);
+    
+  }
+
+  shoppingCart() {
+    const token = this.cart.getCart();
+    if (!token) {
+      this.router.navigate(["/login"]);
+    }
+    else {
+      this.router.navigate(["/shoppingcart"]);
+
+    }
   }
 
 
@@ -112,6 +163,7 @@ export class CartComponent implements OnInit {
         });
       });
     });
+   
   }
 
   deleteCartItem(id: any) {
@@ -187,11 +239,128 @@ export class CartComponent implements OnInit {
   //   }
   // }
 
+
+  //WORKING
+  // logout() {
+  //   if (confirm('Do want you want to save your shopping cart and logout?')) {
+
+  //     const token = this.cart.getToken();
+  //     const userId = this.user.getUserId(token);
+
+  //     var userExists = false;
+  //     var itemId;
+
+  //     this.itmService.getCartItemLS().subscribe((res) => {
+  //       console.log(res);
+  //       this.itmLocal = res;
+
+  //       this.itmLocal.forEach((itm: any) => {
+  //         if (itm.userId === userId) {
+  //           userExists = true;
+  //           itemId = itm._id;
+  //           this.itmService.deleteItemLS(itemId).subscribe(res => {
+  //             console.log("deleted");
+  //           });
+  //         }
+  //         else {
+  //           userExists = false;
+  //         }
+  //       });
+  //     });
+
+
+  //     this.cartListLS = this.cart.getCart();
+  //     this.itemLS = {
+  //       //_id: itm._id,
+  //       userId: userId,
+  //       cartList: this.cartListLS
+  //     }
+  //     this.itmService.loadCartLS(this.itemLS).subscribe(res => {
+  //       console.log(res);
+  //       console.log('add 1');
+  //     });
+
+
+
+  //     this.userService.userLogout();
+  //     this.cart.removeCart();
+
+  //     //to check if record with user Id already exists
+  //     // this.itmService.getCartItemLS().subscribe((res: any) => {
+
+  //     //   this.itmLocal = res;
+  //     //   console.log("length" + this.itmLocal.length);
+  //     //   this.length = this.itmLocal.length;
+
+  //     //     this.itmLocal.forEach((itm: any) => {
+
+  //     //       if (itm.userId === userId) {
+  //     //         console.log("yes");
+  //     //         this.itmService.deleteItemLS(itm._id).subscribe((res: any) => {
+  //     //           console.log('deleted');
+  //     //           this.itmService.cart$.pipe().subscribe(respCart => {
+  //     //             this.cartListLS = respCart;
+  //     //             this.itemLS = {
+  //     //               //_id: itm._id,
+  //     //               userId: userId,
+  //     //               cartList: this.cartListLS
+  //     //             }
+  //     //             this.itmService.loadCartLS(this.itemLS).subscribe(res => {
+  //     //               console.log(res);
+  //     //               console.log('add 1');
+  //     //             });
+  //     //           });
+  //     //         });
+
+
+  //     //       }
+  //     //     });
+
+  //     //     // console.log("esle part");
+  //     //     // this.itmService.cart$.pipe().subscribe(respCart => {
+  //     //     //   this.cartListLS = respCart;
+  //     //     //   console.log(this.cartListLS);
+  //     //     //   this.itemLS = {
+  //     //     //     userId: this.userId,
+  //     //     //     cartList: this.cartListLS
+  //     //     //   }
+  //     //     //   this.itmService.loadCartLS(this.itemLS).subscribe(res => {
+  //     //     //     console.log(res);
+  //     //     //     console.log('add 2');
+  //     //     //   });
+  //     //     // });
+
+  //     // });
+  //     // this.itmService.cart$.pipe().subscribe(respCart => {
+  //     //   this.cartListLS = respCart;
+  //     //   this.itemLS = {
+  //     //     //_id: itm._id,
+  //     //     userId: userId,
+  //     //     cartList: this.cartListLS
+  //     //   }
+  //     //   this.itmService.loadCartLS(this.itemLS).subscribe(res => {
+  //     //     console.log(res);
+  //     //     console.log('add 1');
+  //     //   });
+  //     // });
+
+
+  //   }
+
+  //   else {
+  //     this.userService.userLogout();
+  //     this.cart.removeCart();
+  //   }
+  // }
+
+
+
   logout() {
     if (confirm('Do want you want to save your shopping cart and logout?')) {
 
       const token = this.cart.getToken();
       const userId = this.user.getUserId(token);
+      var len;
 
       var userExists = false;
       var itemId;
@@ -199,19 +368,22 @@ export class CartComponent implements OnInit {
       this.itmService.getCartItemLS().subscribe((res) => {
         console.log(res);
         this.itmLocal = res;
+        len = this.itmLocal.length;
 
-        this.itmLocal.forEach((itm: any) => {
-          if (itm.userId === userId) {
-            userExists = true;
-            itemId = itm._id;
-            this.itmService.deleteItemLS(itemId).subscribe(res => {
-              console.log("deleted");
-            });
-          }
-          else {
-            userExists = false;
-          }
-        });
+        console.log("length" + len);
+
+        if (len !== 0) {
+
+          this.itmLocal.forEach((itm: any) => {
+            if (itm.userId === userId) {
+              userExists = true;
+              itemId = itm._id;
+              this.itmService.deleteItemLS(itemId).subscribe(res => {
+                console.log("deleted");
+              });
+            }
+          });
+        }
       });
 
 
@@ -226,76 +398,17 @@ export class CartComponent implements OnInit {
         console.log('add 1');
       });
 
-
-
       this.userService.userLogout();
       this.cart.removeCart();
-
-      //to check if record with user Id already exists
-      // this.itmService.getCartItemLS().subscribe((res: any) => {
-
-      //   this.itmLocal = res;
-      //   console.log("length" + this.itmLocal.length);
-      //   this.length = this.itmLocal.length;
-
-      //     this.itmLocal.forEach((itm: any) => {
-
-      //       if (itm.userId === userId) {
-      //         console.log("yes");
-      //         this.itmService.deleteItemLS(itm._id).subscribe((res: any) => {
-      //           console.log('deleted');
-      //           this.itmService.cart$.pipe().subscribe(respCart => {
-      //             this.cartListLS = respCart;
-      //             this.itemLS = {
-      //               //_id: itm._id,
-      //               userId: userId,
-      //               cartList: this.cartListLS
-      //             }
-      //             this.itmService.loadCartLS(this.itemLS).subscribe(res => {
-      //               console.log(res);
-      //               console.log('add 1');
-      //             });
-      //           });
-      //         });
-
-
-      //       }
-      //     });
-
-      //     // console.log("esle part");
-      //     // this.itmService.cart$.pipe().subscribe(respCart => {
-      //     //   this.cartListLS = respCart;
-      //     //   console.log(this.cartListLS);
-      //     //   this.itemLS = {
-      //     //     userId: this.userId,
-      //     //     cartList: this.cartListLS
-      //     //   }
-      //     //   this.itmService.loadCartLS(this.itemLS).subscribe(res => {
-      //     //     console.log(res);
-      //     //     console.log('add 2');
-      //     //   });
-      //     // });
-
-      // });
-      // this.itmService.cart$.pipe().subscribe(respCart => {
-      //   this.cartListLS = respCart;
-      //   this.itemLS = {
-      //     //_id: itm._id,
-      //     userId: userId,
-      //     cartList: this.cartListLS
-      //   }
-      //   this.itmService.loadCartLS(this.itemLS).subscribe(res => {
-      //     console.log(res);
-      //     console.log('add 1');
-      //   });
-      // });
-
-
+      localStorage.clear();
+      sessionStorage.clear();
     }
 
     else {
       this.userService.userLogout();
       this.cart.removeCart();
+      localStorage.clear();
+      sessionStorage.clear();
     }
   }
 

@@ -7,3 +7,4 @@ export interface Perfume {
   info?: string;
   idc?: string;
 }
+

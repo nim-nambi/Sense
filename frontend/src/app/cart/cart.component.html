@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -21,186 +22,327 @@
         <li><a routerLink="/forhim">For Him</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    
-        <button routerLink="/shoppingcart" class="btn  navbar-btn" style="background-color:rgb(247, 70, 105); color:rgb(252, 252, 252);">Shopping Cart</button><br>
+        <li><a *ngIf="this.loginStatus"><span class="glyphicon glyphicon-user"></span> {{this.username}}</a></li>
+        <li><a *ngIf="!this.loginStatus" routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign
+            Up</a></li>
+        <li><a *ngIf="!this.loginStatus" routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+        </li>
+        <li><a *ngIf="this.loginStatus" (click)="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+        </li>
+        <button (click)="shoppingCart()" class="btn  navbar-btn"
+          style="background-color:rgb(247, 70, 105); color:rgb(252, 252, 252);">Shopping
+          Cart</button><br>
       </ul>
     </div>
   </nav>
 
-<body class="section_checkout">
-  <div id="wrap">
-    <div id="grid">
-      <span>
-      <div class="column column1">
-        <div class="step" id="step2">
-          <div class="number">
-            <span>1</span>
-          </div>
-          <div class="title">
-            <h1>Billing Information</h1>
-          </div>
-        </div>
-        <div class="content" id="address">
-          <form class="go-right">
-          <div>
-            <input type="name" name="first_name" value="" id="first_name" placeholder="First Name" data-trigger="change" data-validation-minlength="1" data-type="name" data-required="true" data-error-message="Enter Your First Name"/><label for="first_name">First Name</label>
-          </div>
-          <div>
-            <input type="name" name="last_name" value="" id="last_name" placeholder="Last Name" data-trigger="change" data-validation-minlength="1" data-type="name" data-required="true" data-error-message="Enter Your Last Name"/><label for="last_name">Last Name</label>
-          </div>
-          <div>
-            <input type="phone" name="telephone" value="" id="telephone" placeholder="Eg. 050 1235678" data-trigger="change" data-validation-minlength="1" data-type="number" data-required="true" data-error-message="Enter Your Telephone Number"/><label for="telephone">Telephone</label>
-          </div>
-          <div>
-            <input type="text" name="company" value="" id="company" placeholder="Company" data-trigger="change" data-validation-minlength="1" data-type="name" data-required="false"/>
-            <label for="Company">Company</label>
-          </div>
-          <div>
-            <input type="text" name="address" value="" id="address" placeholder="Address" data-trigger="change" data-validation-minlength="1" data-type="text" data-required="true" data-error-message="Enter Your Billing Address"/><label for="Address">Address</label>
-          </div>
-          <div>
-            <input type="text" name="city" value="" id="city" placeholder="Area" data-trigger="change" data-validation-minlength="1" data-type="text" data-required="true" data-error-message="Enter Your Billing City"/><label for="city">Area</label>
-          </div>
-          <div>
-            <div class="state_options">
-              <div class="select">
-                <select id="Emirate">
-                  <option value = "1">Select an Emirate</option>
-                  <option value = "2">Abu Dhabi</option>
-                  <option value = "3">Dubai</option>
-                  <option value = "4">Sharjah</option>
-                  <option value = "5">Ajman</option>
-                  <option value = "6">Umm Al Quwain</option>
-                  <option value = "7">Ras Al Khaima</option>
-                  <option value = "8">Fujairah</option>
-                </select>
+
+  <body class="section_checkout">
+    <div id="wrap">
+      <div id="grid">
+        <span>
+          <div class="column column3">
+            <div class="step" id="step2">
+              <div class="number">
+                <span>1</span>
               </div>
-              <label class="state" for="state">State</label>
+              <div class="title">
+                <h1>Items</h1>
+              </div>
+              <div class="modify">
+                <i class="fa fa-plus-circle"></i>
+              </div>
+            </div>
+            <div class="content" id="final_products">
+              <div class="left" id="ordered">
+                <div class="products">
+
+                  <div class="card" style="height:250px;" *ngFor="let item of cartItemDetail">
+                    <span class="product_image">
+                      <img src="{{item.pic}}" style="width:auto;height: 200px;" />
+                    </span>
+                    <span class="product_details">
+                      <br><br>
+                      <span class="product_name">
+                        <br>
+                        Name: <b>{{item.name}}</b><br>
+                        Dept: <b>{{item.dept}}</b><br>
+                        Price: <b>AED {{item.price}}</b><br>
+                        Qty: <b>1</b><br><br>
+                        <button (click)="deleteCartItem(item.itemId)">Delete</button>
+                      </span>
+                    </span>
+                  </div>
+
+
+                </div>
+                <!-- <div class="totals">
+                  <div class="final">
+
+                    <span class="title">Total number of Items: {{this.cartCount}}</span><br>
+                    <span class="title">Total price: AED {{this.total}} </span><br><br>
+                    <span class="subtitle">Total Price in USD: <span id="sub_tax">$??</span></span>
+                  </div>
+                </div> -->
+                <!-- <div class="right" id="reviewed">
+                  <div class="billing">
+                    <br>
+                    <span class="title">Billing Address: </span>
+                    <div class="address_reviewed">
+                      <span class="name">i am me</span>
+                      <span class="address">my house</span>
+                      <span class="location">next to my neighbour</span>
+                      <span class="phone">+91 484 254 0530</span><br>
+                    </div>
+                  </div>
+                  <div id="complete">
+                    <a class="big_button" id="complete" routerLink="/order">Place Order</a>
+                  </div>
+                </div> -->
+              </div>
             </div>
           </div>
 
-
-          <div>
-            <input type="text" name="zip" value="" id="zip" placeholder="Zip Code" data-trigger="change" data-validation-minlength="1" data-type="text" data-required="true" data-error-message="Enter Your Billing Zip Code"/><label for="zip">Zip Code</label>
-          </div>
-
-
-          <div>
-            <div class="country_options">
-              <div class="select">
-                <select id="country">
-                  <option value = "1">United Arab Emirates</option>
-                </select>
+          <div class="column column1">
+            <div class="step" id="step2">
+              <div class="number">
+                <span>2</span>
               </div>
-              <label class="country" for="country">Country</label>
+              <div class="title">
+                <h1>Billing Information</h1>
+              </div>
             </div>
+            <div class="content" id="address">
+              <form class="go-right">
+                <div>
+                  <input type="name" name="first_name" value="" id="first_name" placeholder="First Name"
+                    data-trigger="change" data-validation-minlength="1" data-type="name" data-required="true"
+                    data-error-message="Enter Your First Name" /><label for="first_name">First Name</label>
+                </div>
+                <div>
+                  <input type="name" name="last_name" value="" id="last_name" placeholder="Last Name"
+                    data-trigger="change" data-validation-minlength="1" data-type="name" data-required="true"
+                    data-error-message="Enter Your Last Name" /><label for="last_name">Last Name</label>
+                </div>
+                <div>
+                  <input type="phone" name="telephone" value="" id="telephone" placeholder="Eg. 050 1235678"
+                    data-trigger="change" data-validation-minlength="1" data-type="number" data-required="true"
+                    data-error-message="Enter Your Telephone Number" /><label for="telephone">Telephone</label>
+                </div>
+                <div>
+                  <input type="text" name="address" value="" id="address" placeholder="Address" data-trigger="change"
+                    data-validation-minlength="1" data-type="text" data-required="true"
+                    data-error-message="Enter Your Billing Address" /><label for="Address">Address</label>
+                </div>
+                <div>
+                  <input type="text" name="city" value="" id="city" placeholder="Area" data-trigger="change"
+                    data-validation-minlength="1" data-type="text" data-required="true"
+                    data-error-message="Enter Your Billing City" /><label for="city">Area</label>
+                </div>
+                <div>
+                  <div class="state_options">
+                    <div class="select">
+                      <select id="Emirate">
+                        <option value="1">Select an Emirate</option>
+                        <option value="2">Abu Dhabi</option>
+                        <option value="3">Dubai</option>
+                        <option value="4">Sharjah</option>
+                        <option value="5">Ajman</option>
+                        <option value="6">Umm Al Quwain</option>
+                        <option value="7">Ras Al Khaima</option>
+                        <option value="8">Fujairah</option>
+                      </select>
+                    </div>
+                    <label class="state" for="state">State</label>
+                  </div>
+                </div>
+
+
+                <div>
+                  <input type="text" name="zip" value="" id="zip" placeholder="Zip Code" data-trigger="change"
+                    data-validation-minlength="1" data-type="text" data-required="true"
+                    data-error-message="Enter Your Billing Zip Code" /><label for="zip">Zip Code</label>
+                </div>
+
+
+                <div>
+                  <div class="country_options">
+                    <div class="select">
+                      <select id="country">
+                        <option value="1">United Arab Emirates</option>
+                      </select>
+                    </div>
+                    <label class="country" for="country">Country</label>
+                  </div>
+                </div>
+              </form>
+              <!-- <a class="continue" href="#">Continue</a> -->
+
+
+             <br> <div class="totals"></div>
+              <div class="totals">
+                <div class="final">
+
+                  <span class="subtitle">Total number of Items: {{this.cartCount}}</span>
+                  <span class="subtitle">Total price: AED {{this.total}} </span>
+                  <span class="subtitle">Total Price in USD: <span id="sub_tax">$??</span></span>
+                </div>
+              </div>
+
+              <div class="right" id="reviewed">
+
+                <div id="complete">
+                  <a class="big_button" id="complete" routerLink="/order">Place Order</a>
+                </div>
+              </div>
+
+            </div>
+            
           </div>
-        </form>
-          <a class="continue" href="#">Continue</a>
+
+          
+          
+
+          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+          <footer class="site-footer">
+            <div class="container">
+              <div class="row ">
+                <div class="col-sm-12 col-md-6">
+                  <h6>About</h6>
+                  <p class="text-justify">We are the leading perfume experts in the UAE. You can be sure that you are in
+                    the best place when making a purchase at The Perfume Shop. We have trained.</p>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                  <h6>Contact Us</h6>
+                  <ul class="footer-links">
+                    <li style="padding: 2px;">No: 58 A, East Madison Street,<br> Baltimore, MD, USA 4508</li>
+
+                    <li style="padding: 2px;">support@scents.com</li>
+
+                    <li style="padding: 2px;">9:00am to 4:00pm</li>
+
+                    <li style="padding: 2px;">+000 123456789</li>
+                  </ul>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                  <h6>Quick Links</h6>
+                  <ul class="footer-links">
+                    <li style="padding: 2px;"><a routerLink="/">Home</a></li>
+                    <li style="padding: 2px;"><a routerLink="/forher">For Her</a></li>
+                    <li style="padding: 2px;"><a routerLink="/forhim">For Him</a></li>
+                  </ul>
+                </div>
+              </div>
+              <hr>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                </div>
+
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                  <ul class="social-icons">
+                    <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                    <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </footer>
+
+
+          <!-- <!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="cart.component.css">
+
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse ">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">SENSE</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a routerLink="/">Home</a></li>
+        <li><a routerLink="/forher">For Her</a></li>
+        <li><a routerLink="/forhim">For Him</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a><span (click)="logout()" class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        <button routerLink="/shoppingcart" class="btn  navbar-btn"
+          style="background-color:rgb(247, 70, 105); color:rgb(252, 252, 252);" (click)="logout()">Logout</button><br>
+        <button routerLink="/shoppingcart" class="btn  navbar-btn"
+          style="background-color:rgb(247, 70, 105); color:rgb(252, 252, 252);">Shopping
+          Cart</button><br>
+      </ul>
+    </div>
+  </nav>
+  <div class="about-section">
+    <h1 style="font-size: 1.6em;">Shopping Cart</h1>
+  </div>
+
+  <br>
+
+  <div class="rowmain">
+    <div class="columnmain" style="background-color:rgb(255, 255, 255);">
+      <div class="card" style="width:50%;">
+        <div class="container">
+          <p>Total number of items: {{this.cartCount}}</p>
+          <p>Total Price: $ {{this.total}}</p>
+          <button class="form-btn">Checkout</button>
         </div>
-      </div>
-  <div class="column column3">
-    <div class="step" id="step2">
-      <div class="number">
-        <span>2</span>
-      </div>
-      <div class="title">
-        <h1>Finalize Order</h1>
-      </div>
-      <div class="modify">
-        <i class="fa fa-plus-circle"></i>
       </div>
     </div>
-    <div class="content" id="final_products">
-      <div class="left" id="ordered">
-        <div class="products">
+
+    <!--<div class="columnmain" style="background-color:rgb(255, 255, 255);">
+      <div class="card" style="width:50%;">
+        <div class="container">
+          <form [formGroup]="itmForm" (ngSubmit)="onItmSubmit()">
+
+            
+            Name: <input type="text" formControlName="name">
+             
+            Department: <input type="text" formControlName="dept">
+            
+            Price: <input type="text" formControlName="price">
+            Picture: <input type="text" formControlName="pic">
+
+            <button type="submit" class="form-btn">{{editMode?'Update Item' : 'Add Item'}}</button>
+
+          </form>
+        </div>
+      </div>-->
+
+          <!-- <div class="columnmain2" style="background-color:rgb(255, 255, 255);">
+      <div class="row">
+        <div class="column" *ngFor="let item of cartItemDetail">
           <div class="card">
-            <span class="product_image">
-              <img src="https://images-na.ssl-images-amazon.com/images/I/51%2BYnzX6FTL._AC_SY780_.jpg" />
-            </span>
-            <span class="product_details">
-              <br><br>
-              <span class="product_name">item Name</span>
-              <span class="quantity">1 &nbsp;</span>
-              <span class="price">price</span>
-            </span>
+            <img src="{{item.pic}}" style="width:100%;height: 250px;">
+            <div class="containerT">
+              <h2>{{item.name}}</h2>
+              <h3>{{item.dept}}</h3>
+              <h3>${{item.price}}</h3>
+              <p><button class="button" (click)="deleteCartItem(item.itemId)" >Delete</button></p>
+              <p><button class="button" (click)="onDeleteItem(item._id)" (click)="deleteCartItem(item)" (click)="onEditItem(item)">Edit</button></p>-->
+          <!-- </div>
           </div>
         </div>
-        <div class="totals">
-        <div class="final">
-          <span class="title">Total <span id="calculated_total">$ ??</span></span><br><br>
-          <span class="subtitle">Total Price in USD: <span id="sub_tax">$??</span></span>
-        </div>
-      </div>
-      <div class="right" id="reviewed">
-        <div class="billing">
-          <br>
-          <span class="title">Billing Address: </span>
-          <div class="address_reviewed">
-            <span class="name">i am me</span>
-            <span class="address">my house</span>
-            <span class="location">next to  my neighbour</span>
-            <span class="phone">+91 484 254 0530</span><br>
-          </div>
-        </div>
-        <div id="complete">
-          <a class="big_button" id="complete" href="#">Complete Order</a>
-        </div>
       </div>
     </div>
+
   </div>
-  </div>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-<footer class="site-footer" >
-  <div class="container">
-    <div class="row ">
-      <div class="col-sm-12 col-md-6">
-        <h6>About</h6>
-        <p class="text-justify">We are the leading perfume experts in the UAE. You can be sure that you are in the best place when making a purchase at The Perfume Shop. We have trained.</p>
-      </div>
-
-      <div class="col-xs-6 col-md-3">
-        <h6>Contact Us</h6>
-        <ul class="footer-links">
-          <li style="padding: 2px;">No: 58 A, East Madison Street,<br> Baltimore, MD, USA 4508</li>
-          
-          <li style="padding: 2px;">support@scents.com</li>
-         
-          <li style="padding: 2px;">9:00am to 4:00pm</li>
-          
-          <li style="padding: 2px;">+000 123456789</li>
-        </ul>
-      </div>
-
-      <div class="col-xs-6 col-md-3">
-        <h6>Quick Links</h6>
-        <ul class="footer-links">
-          <li style="padding: 2px;"><a href="">Home</a></li>
-          <li style="padding: 2px;"><a href="">For Her</a></li>
-          <li style="padding: 2px;"><a href="">For Him</a></li>
-        </ul>
-      </div>
-    </div>
-    <hr>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-sm-6 col-xs-12">
-      </div>
-
-      <div class="col-md-4 col-sm-6 col-xs-12">
-        <ul class="social-icons">
-          <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-          <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-          <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-          <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
-        </ul>
-      </div>
-    </div>
-  </div>
-</footer>      
+</body>  -->
