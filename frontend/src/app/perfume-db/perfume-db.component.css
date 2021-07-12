@@ -36,6 +36,7 @@ form-btn:hover {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+  width: auto;
 }
 
 /* Float four columns side by side */
@@ -75,7 +76,7 @@ form-btn:hover {
   }
 }
 
-/* Style the counter cards */
+/* Style the counter cards  card for products*/
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 0px;

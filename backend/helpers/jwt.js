@@ -17,6 +17,7 @@ function authJwt() {
       { url: /\/perfumes(.*)/, methods: ['GET', 'OPTIONS'] },
       { url: /\/shoppingcart(.*)/, methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'] },
       { url: /\/shoppingcart\/local(.*)/, methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'] },
+      { url: /\/users(.*)/, methods: ['GET'] },
       '/users/login',
       '/users/register',
       //'/shoppingcart'

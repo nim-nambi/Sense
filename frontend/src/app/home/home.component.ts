@@ -13,8 +13,12 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  username: string;
 
+
+  loginStatus : boolean = false;
+  homeStat: boolean= true;
+  username: any ;
+  isAdmin: boolean =false;
 
   constructor(
     private decodeTokenService: AuthGuardService,
@@ -22,6 +26,44 @@ export class HomeComponent implements OnInit {
     private userService: UsersService,
     private router: Router,
   ) { }
+
+  ngOnInit(): void {
+    //this.getId(); 
+  
+    this.userStatus();
+    
+    
+  }
+
+  checkIsAdmin(){
+    const tokenL = this.tokenService.getToken();
+    this.isAdmin = this.decodeTokenService.isAdmin(tokenL);
+    
+
+  }
+
+  getUsername(){
+    const tokenL = this.tokenService.getToken();
+    const userid = this.decodeTokenService.getUserId(tokenL);
+    console.log(userid);
+     this.userService.getUser(userid).subscribe(
+       (res) => {
+         this.username = res.name;
+       }
+     );
+  }
+
+
+  userStatus(){
+    const token = this.tokenService.getCart();
+    if (token){
+      this.loginStatus = true;
+      this.homeStat = false;
+      this.getUsername();
+      this.checkIsAdmin();
+    }
+    console.log("user status"+this.loginStatus);
+  }
 
   shoppingCart() {
     const token = this.tokenService.getCart();
@@ -33,9 +75,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    //this.getId(); 
-  }
+  
 
   logout() {
     this.userService.userLogout();

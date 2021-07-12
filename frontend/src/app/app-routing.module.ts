@@ -7,6 +7,7 @@ import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ManComponent } from './man/man.component';
+import { OrderComponent } from './order/order.component';
 import { PerfumeDbComponent } from './perfume-db/perfume-db.component';
 import { RegisterComponent } from './register/register.component';
 import { UsersComponent } from './users/users.component';
@@ -55,6 +56,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'order',
+    component: OrderComponent
   }
 
 ];

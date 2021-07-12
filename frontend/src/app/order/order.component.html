@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <title>
+        Order Status
+    </title>
+    
+    <head>
+    <link rel="stylesheet" href="order.component.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+
+      <nav class="navbar navbar-inverse ">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">SENSE</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a routerLink="/">Home</a></li>
+            <li><a routerLink="/forher">For Her</a></li>
+            <li><a routerLink="/forhim">For Him</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a *ngIf="this.loginStatus"><span class="glyphicon glyphicon-user"></span> {{this.username}}</a></li>
+            <li><a  *ngIf="!this.loginStatus" routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a *ngIf="!this.loginStatus"routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a *ngIf="this.loginStatus"  ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            <!-- <button (click)="shoppingCart()" class="btn  navbar-btn"
+              style="background-color:rgb(247, 70, 105); color:rgb(252, 252, 252);">Shopping
+              Cart</button><br>  -->
+              <!-- (click)="logout()" -->
+          </ul>
+        </div>
+      </nav>
+    
+
+    <div class="placed_gif">
+        <img class ="truck_gif" src="https://yourequipmentsuppliers.com/wp-content/uploads/2019/07/fast-delivery.gif" alt="order placed gif" />
+        <p class="order_text">
+            <strong>Your order is on its way</strong>
+        </p>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-md-6">
+              <h6>About</h6>
+              <p class="text-justify">We are the leading perfume experts in the UAE. You can be sure that you are in the best place when making a purchase at The Perfume Shop. We have trained and developed the most knowledgeable team of sales advisors in the perfume industry, proudly boasting the largest number of industry recognised CFSS (Certified Fragrance Sales Specialist) graduates in the UAE. To further showcase our dedication to fragrance expertise, we recently established our own innovative programme, "The Perfume School”, so that you can always have confidence in our high quality, unbiased advice every time you shop.</p>
+            </div>
+  
+            <div class="col-xs-6 col-md-3">
+              <h6>Contact Us</h6>
+              <ul class="footer-links">
+                <li style="padding: 2px;">No: 58 A, East Madison Street,<br> Baltimore, MD, USA 4508</li>
+                
+                <li style="padding: 2px;">support@scents.com</li>
+               
+                <li style="padding: 2px;">9:00am to 4:00pm</li>
+                
+                <li style="padding: 2px;">+000 123456789</li>
+              </ul>
+            </div>
+  
+            <div class="col-xs-6 col-md-3">
+              <h6>Quick Links</h6>
+              <ul class="footer-links">
+                <li style="padding: 2px;"><a href="">Home</a></li>
+                <li style="padding: 2px;"><a href="">For Her</a></li>
+                <li style="padding: 2px;"><a href="">For Him</a></li>
+              </ul>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+            </div>
+  
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <ul class="social-icons">
+                <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
+              </ul>
+            </div>
+          </div>
+        </div>
+    </footer>
+
+    </body>
+
+</html>
