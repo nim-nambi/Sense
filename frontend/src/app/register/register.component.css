@@ -3,7 +3,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Full-width input fields */
 input[type=text], input[type=password] {
-  width: 100%;
+  width: 70%;
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
@@ -25,7 +25,7 @@ button {
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 50%;
   opacity: 0.9;
 }
 
@@ -42,7 +42,7 @@ button:hover {
 /* Float cancel and signup buttons and add an equal width */
 .cancelbtn, .signupbtn {
   float: left;
-  width: 50%;
+  width: 38%;
 }
 
 /* Add padding to container elements */
@@ -56,8 +56,8 @@ button:hover {
 .modal-content {
   background-color: #fefefe;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  border: 1px solid rgb(209, 76, 76);
+  width: 60%; /* Could be more or less, depending on screen size */
 }
 
 /* Style the horizontal ruler */

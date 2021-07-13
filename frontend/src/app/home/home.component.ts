@@ -5,6 +5,8 @@ import { UsersService } from '../appServices/users.service';
 import { User } from '../appModels/user.model';
 import { RegisterComponent } from '../register/register.component';
 import { Router } from '@angular/router';
+import { CartService } from '../appServices/cart.service';
+import { ItemLocalStorage } from '../appModels/cart.model';
 
 @Component({
   selector: 'app-home',
@@ -19,17 +21,27 @@ export class HomeComponent implements OnInit {
   homeStat: boolean= true;
   username: any ;
   isAdmin: boolean =false;
+  itmLocal: any;
+  cartListLS: any;
+  itemLS: ItemLocalStorage;
 
   constructor(
     private decodeTokenService: AuthGuardService,
     private tokenService: LocalStorageService,
     private userService: UsersService,
     private router: Router,
+    private itmService: CartService,
+    
   ) { }
 
   ngOnInit(): void {
     //this.getId(); 
-  
+    if (!localStorage.getItem('foo')) {
+      localStorage.setItem('foo', 'no reload');
+      location.reload();
+    } else {
+      localStorage.removeItem('foo');
+    }
     this.userStatus();
     
     
@@ -77,17 +89,56 @@ export class HomeComponent implements OnInit {
 
   
 
-  logout() {
-    this.userService.userLogout();
-  }
-
-
-  // getId(): string {
+  // logout() {
   //   const token = this.tokenService.getToken();
-  //   //const userId = this.decodeTokenService.getUserId(token);
+  //   const userId = this.decodeTokenService.getUserId(token);
+  //   var len;
 
-  //   //return userId;
+  //   var userExists = false;
+  //   var itemId;
+
+  //   this.itmService.getCartItemLS().subscribe((res) => {
+  //     console.log(res);
+  //     this.itmLocal = res;
+  //     len = this.itmLocal.length;
+
+  //     console.log("length" + len);
+
+  //     if (len !== 0) {
+
+  //       this.itmLocal.forEach((itm: any) => {
+  //         if (itm.userId === userId) {
+  //           userExists = true;
+  //           itemId = itm._id;
+  //           this.itmService.deleteItemLS(itemId).subscribe(res => {
+  //             console.log("deleted");
+  //           });
+  //         }
+  //       });
+  //     }
+  //   });
+
+  //   this.cartListLS = this.tokenService.getCart();
+  //   this.itemLS = {
+  //     //_id: itm._id,
+  //     userId: userId,
+  //     cartList: this.cartListLS
+  //   }
+  //   this.itmService.loadCartLS(this.itemLS).subscribe(res => {
+  //     console.log(res);
+  //     console.log('add 1');
+  //   });
+
+  //   this.userService.userLogout();
+  //   this.tokenService.removeCart();
+  //   localStorage.clear();
+  //   sessionStorage.clear();
+
+
+
   // }
+
+
 
 
 

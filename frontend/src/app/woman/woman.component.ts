@@ -99,12 +99,12 @@ export class WomanComponent implements OnInit {
     }
   }
 
-  logout() {
-    if (confirm('Do want you want to save your shopping cart and logout?')) {
-      this.userService.userLogout();
-      this.token.removeCart();
-    }
-  }
+  // logout() {
+  //   if (confirm('Do want you want to save your shopping cart and logout?')) {
+  //     this.userService.userLogout();
+  //     this.token.removeCart();
+  //   }
+  // }
 
   //to display items from perfumes db
   getItems() {
