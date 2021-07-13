@@ -37,6 +37,15 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+    if (!localStorage.getItem('foo')) {
+      localStorage.setItem('foo', 'no reload');
+      location.reload();
+    } else {
+      localStorage.removeItem('foo');
+    }
+
+                                  
     this.loginForm = this.fb.group({
       _id: [''],
       email: ['', [Validators.required, Validators.email]],
