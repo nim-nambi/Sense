@@ -83,16 +83,16 @@
 	background: #fff;
 }
 .section_checkout .column {
-	width: 40%;
+	width: 45%;
 	float: left;
-  margin-left: 100px;
+  	margin-left: 50px;
 	margin-right: 2%;
 	border-radius: 10px;
 	background: #fff;
 }
 .section_checkout .column3 {
 	margin-right: 0;
-	margin-left: 0;
+	margin-left: 20px;
 }
 
 .card {
