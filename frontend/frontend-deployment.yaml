@@ -1,33 +1,36 @@
-apiVersion: apps/v1 
-kind: Deployment 
-metadata: 
-  name: angular-deployment 
-spec: 
-  selector: 
-    matchLabels: 
-      app: angular 
-  replicas: 5 # tells deployment to run 2 pods matching the template 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: angular
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: frontend
   template:
-    metadata: 
-      labels: 
-        app: angular 
-    spec: 
-      containers: 
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
       - name: angular 
         image: nimnambi/sense-frontend
         ports: 
-        - containerPort: 80 
+        - containerPort: 4200 
 --- 
 
 kind: Service 
 apiVersion: v1 
 metadata: 
-  name: angular-service 
+  name: angular-svc
 spec: 
   selector: 
     app: angular 
   ports: 
   - protocol: TCP 
-    port: 80 
-    targetPort: 80 
+    port: 4200
+    targetPort: 4200 
   type: LoadBalancer 
