@@ -1,0 +1,29 @@
+sudo apt-get update
+curl https://releases.rancher.com/install-docker/20.10.sh | sh
+
+sudo apt-get install -y apt-transport-https ca-certificates 
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https:>
+
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+
+#master node
+kubeadm init --apiserver-advertise-address=192.168.1.222 --pod-network-cidr=192.168.1.0/16 --ignore-preflight-errors=all 
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+//#worker
+//kube join ... result on terminal (worker node)
+
+#master
+kubectl get nodes
+
+#calico (master)
+curl https://docs.projectcalico.org/manifests/calico.yaml -O
+kubectl apply -f calico.yaml
+
+kubeadm token create --print-join-command
+//kube join ... result on terminal (worker node)
